@@ -1,0 +1,43 @@
+#!/bin/bash
+
+LINES=""
+
+parse_cmd_arguments() {
+    while [[ $# -gt 0 ]]; do
+        case $1 in
+            -l|--lines)
+                LINES=$(echo "$2" | tr "," " ")
+                shift
+                shift
+                ;;
+            -*|--*)
+                echo "$0: Unknown option $1"
+                exit 1
+                ;;
+            *)
+                shift
+                ;;
+        esac
+    done
+}
+
+element_in() {
+    for el in $1; do
+        [[ "$el" == "$2" ]] && return 0
+    done
+
+    return 1
+}
+
+parse_cmd_arguments "$@"
+
+i=1
+while IFS='' read -r line; do
+    element_in "$LINES" "$i"
+
+    if [[ $? -eq 0 ]]; then
+        echo "$line"
+    fi
+
+    i=$((i + 1))
+done < /dev/stdin
