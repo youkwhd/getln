@@ -1,0 +1,14 @@
+.TH GETLN 1 2023-10-02 "getln 0.1.0"
+
+.SH NAME
+getln \- get specified lines only from stdin, writing to stdout.
+
+.SH SYNOPSIS
+.B getln
+[\fB-fs\fR] [\fB\-l \fIarray\fR]
+
+.SH EXAMPLES
+.B echo
+"Hello\\nWorld\\nFrom\\ngetln" |
+.B getln
+-l 1,4
