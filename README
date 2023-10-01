@@ -1,0 +1,4 @@
+getln
+=====
+
+get specified lines only from stdin, writing to stdout.
